@@ -6,7 +6,6 @@
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha __tests__/*/*.js  --require babel-register --reporter spec || exit 0",
     "dev": "NODE_ENV=production RUNNING_LOCALLY=true nodemon --exec babel-node src/index.js",
-    "prestart": "babel src --out-dir dist",
     "start": "NODE_ENV=production RUNNING_LOCALLY=false node dist/index.js",
     "coverage": "NODE_ENV=test istanbul cover --report lcov --report json --report text --report html _mocha -- -r babel-register -- -r __tests__/?*?/?*.js || exit 0",
     "deb": "babel-node src"
