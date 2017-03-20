@@ -13,6 +13,7 @@ const config = {
     'nodedata-api.herokuapp.com',
     'localhost:3000',
     'localhost:4000',
+    'son-goku.herokuapp.com',
   ],
   httpMiddleWare: {
     middleware: function (req, res, next) {
