@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for dbwkr/globals.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">dbwkr</a> globals.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var path = require('path');
+const config = {
+  dbGenUrl: dbInfor =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (dbInfor.isLocal) {
+      return `${dbInfor.url}:${dbInfor.port}/${dbInfor.dbName}`;
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >      return `mongodb://${dbInfor.dbuser}:${dbInfor.dbpassword}@${dbInfor.url}:${dbInfor.port}/${dbInfor.dbName}`;</span>
+    }
+  },
+  logFile: path.join(__dirname, '/private/logger.txt'),// eslint-disable-line
+  listHost: [
+    'localhost:8080',
+    'nodedata-api.herokuapp.com',
+    'localhost:3000',
+    'localhost:4000',
+  ],
+  httpMiddleWare: {
+    middleware: <span class="fstat-no" title="function not covered" >function (</span>req, res, next) {
+<span class="cstat-no" title="statement not covered" >      res.set('Access-Control-Allow-Origin', '*');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Accept-Patch', 'javascript/json;charset=utf-8');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Allow', 'GET, HEAD, POST, DELETE, PUT, OPTION');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Connection', 'close');</span>
+<span class="cstat-no" title="statement not covered" >      next();</span>
+    },
+    middlewareUpload: <span class="fstat-no" title="function not covered" >function (</span>req, res, next) {
+<span class="cstat-no" title="statement not covered" >      res.set('Access-Control-Allow-Origin', '*');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Accept-Patch', 'javascript/json;charset=utf-8');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Accept-Ranges', 'bytes');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Allow', 'GET, HEAD, POST, OPTION');</span>
+<span class="cstat-no" title="statement not covered" >      res.set('Connection', 'close');</span>
+<span class="cstat-no" title="statement not covered" >      next();</span>
+    },
+    multerConfig: {
+      destination: <span class="fstat-no" title="function not covered" >function (</span>req, file, cb) {
+<span class="cstat-no" title="statement not covered" >        cb(null, path.join(__dirname, 'uploads/'));// eslint-disable-line</span>
+      },
+      filename: <span class="fstat-no" title="function not covered" >function (</span>req, file, cb) {
+<span class="cstat-no" title="statement not covered" >        crypto.pseudoRandomBytes(16, <span class="fstat-no" title="function not covered" >(</span>err, raw) =&gt; {// eslint-disable-line</span>
+<span class="cstat-no" title="statement not covered" >          cb(null, (raw.toString(`hex`) + Date.now()).substring(1, 32) + '.' + /\.(\w+)$/g.exec(file.originalname)[1]);// eslint-disable-line</span>
+        });
+      },
+    },
+    checkall: function (req, res, next) {
+      const header = req.headers;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (config.listHost.indexOf(header.host) === -1) {
+        res.status(404).send('NOT FOUND');
+<span class="cstat-no" title="statement not covered" >        res.end();</span>
+      } else { <span class="cstat-no" title="statement not covered" >return next(); }</span>
+    },
+  },
+  toText: <span class="fstat-no" title="function not covered" >function (</span>str) {
+<span class="cstat-no" title="statement not covered" >    str = str.toLowerCase();// eslint-disable-line</span>
+<span class="cstat-no" title="statement not covered" >    str = str.replace(/\s+|\-+/g, '').replace(/ă|ằ|ắ|ẳ|ẵ|ặ|ạ|à|á|ã|ả|â|ấ|ầ|ẩ|ẫ|ậ/g, 'a')// eslint-disable-line</span>
+      .replace(/ô|ồ|ố|ổ|ỗ|ộ|ơ|ờ|ớ|ở|ỡ|ợ|ò|ó|ỏ|õ|ọ/g, 'o')
+      .replace(/đ/g, 'd').replace(/ư|ứ|ừ|ử|ự/g, 'u').replace(/ê|ề|ế|ể|ễ|ệ/g, 'e')
+      .replace(/!|@|%|\^|\*|\(|\)|\+|\=|\&lt;|\&gt;|\?|\/|,|\.|\:|\;|\'| |\"|\&amp;|\#|\[|\]|~|$|_/g, '?')// eslint-disable-line
+      .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y')
+      .replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+<span class="cstat-no" title="statement not covered" >    return str;</span>
+  },
+&nbsp;
+};
+module.exports = {
+  config,
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Mar 04 2017 01:33:52 GMT+0700 (ICT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "name": "son-goku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha __tests__/*/*.js  --require babel-register --reporter spec || exit 0",
+    "dev": "NODE_ENV=production RUNNING_LOCALLY=true nodemon --exec babel-node src/index.js",
+    "prestart": "babel src --out-dir dist",
+    "start": "NODE_ENV=production RUNNING_LOCALLY=false node dist/index.js",
+    "coverage": "NODE_ENV=test istanbul cover --report lcov --report json --report text --report html _mocha -- -r babel-register -- -r __tests__/?*?/?*.js || exit 0",
+    "deb": "babel-node src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/my0sot1s/son-goku.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-latest": "^6.22.0",
+    "body-parser": "^1.16.0",
+    "busboy": "^0.2.14",
+    "chai-http": "^3.0.0",
+    "crypto": "0.0.3",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.22",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.1",
+    "nconf": "^0.8.4",
+    "promise": "^7.1.1",
+    "redis": "^2.6.5",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-istanbul": "^0.12.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.22.0",
+    "busboy": "^0.2.13",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "coveralls": "^2.11.16",
+    "eslint": "^3.16.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "authors": [
+    "Te Nguyen <manhte231@gmail.com> (https://github.com/my0sot1s)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/my0sot1s/son-goku#readme"
+}

@@ -1,0 +1,56 @@
+{
+  "eventName": {
+    "connection": "connection",
+    "data": "action:data",
+    "message": "action:message",
+    "create": "action:create",
+    "afterCreate": "action:afterCreate",
+    "update": "action:update",
+    "afterUpdate": "action:afterUpdate",
+    "delete": "action:delete",
+    "afterDelete": "action:afterDelete",
+    "find": "action:find",
+    "resetMemory": "action:resetMemory",
+    "afterReset": "action:afterReset",
+    "disconnect": "disconnect"
+  },
+  "errCode": {
+    "errBase": "########## Error in base ##############",
+    "errConnection": "########## Error in Connection to phisic Db ##############",
+    "errCollectionName": "########## Error CollectionName undefined ##############",
+    "errCanNotOpen": "########## Error Can Not Open Connection ##############",
+    "errCanNotClose": "########## Error Can Not Close Connection ##############",
+    "errProcessCreat": "########## Error in Process Create##############",
+    "errProcessUpdate": "########## Error in Process Update##############",
+    "errProcessRead": "########## Error in Process Read##############",
+    "errProcessDelete": "########## Error in Process Delete##############",
+    "errProcessFind": "########## Error in Process Find##############",
+    "errCode403": 403,
+    "errCode503": 503
+  },
+  "RedisType": {
+    "N": 1,
+    "H": 2
+  },
+  "weather": {
+    "key": "APPID=97daf377ab057bdfa9ef9f7a45296b78",
+    "cityWeather": {
+      "hanoi": [
+        "1561096",
+        "hanoi"
+      ],
+      "donghoi": [
+        "1582886",
+        "donghoi"
+      ]
+    },
+    "weatherType": {
+      "forecast": "forecast",
+      "weather": "weather"
+    },
+    "errConnMongo": "Unable to connect to the mongoDB server.\nKhông thể tạo được kết nối với Db",
+    "mongoConnSuccess": "Success connect mongoDb",
+    "errConnRedis": "Unable to connect to the Redis server.\nKhông thể tạo được kết nối với Memory",
+    "redisConnSuccess": "Success connect Redis server."
+  }
+}
