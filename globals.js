@@ -42,12 +42,11 @@ const config = {
       },
     },
     checkall: function (req, res, next) {
-      //const header = req.headers;
-      //if (config.listHost.indexOf(header.host) === -1) {
-      //  res.status(404).send('NOT FOUND');
-      //  res.end();
-      //} else { return next(); }
-	next();
+      const header = req.headers;
+      if (config.listHost.indexOf(header.host) === -1) {
+        res.status(404).send('NOT FOUND');
+        res.end();
+      } else { return next(); }
     },
   },
   toText: function (str) {
