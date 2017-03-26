@@ -13,6 +13,7 @@
   },
   "redis": {
     "port": 16703,
-    "host": "redis-16703.c10.us-east-1-2.ec2.cloud.redislabs.com"
+    "host": "redis-16703.c10.us-east-1-2.ec2.cloud.redislabs.com",
+    "timeOut": 4000
   }
 }

@@ -81,17 +81,19 @@ var ReadAction = function (_BaseProcess) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii]._id;
                           // }
                         }
-                        resolve(RESPONSE);
                       }
+                      resolve(RESPONSE);
                     } else {
                       console.log('---Not Cached---');
+                      _this2.redis.createClient();
                       for (var _ii2 in docs) {
-                        _this2.redis.setter(_this2.collectionName, docs[_ii2]._id, JSON.stringify(docs[_ii2]), REDIS_TYPE.H);
+                        _this2.redis.setter2(_this2.collectionName, docs[_ii2]._id, JSON.stringify(docs[_ii2]), REDIS_TYPE.H);
                         RESPONSE[docs[_ii2]._id] = docs[_ii2];
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii2]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii2]._id;
                         }
                       }
+                      _this2.redis.quit();
                       resolve(RESPONSE);
                     }
                   }

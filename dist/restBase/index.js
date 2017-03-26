@@ -28,10 +28,8 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
  */
 // 1: 'Products',
 .get('/reset', function (req, res) {
-  var rs = null;
   try {
-    rs = new _actions.ReadAction('Products');
-    rs.reset().then(function (r) {
+    new _actions.ReadAction('Products').reset().then(function (r) {
       res.status(200).send('ok');
     }).catch(function (err) {
       console.log(err);
@@ -39,8 +37,6 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     });
   } catch (error) {
     res.status(ERROR_CODE.errCode403).end();
-  } finally {
-    rs.quit();
   }
 }).get('/:collection', function (req, res) {
   var r = new _actions.ReadAction(req.params.collection);
@@ -51,11 +47,9 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     } else {
       res.status(ERROR_CODE.errCode403).end();
     }
-    r.quit();
   }).catch(function (error) {
     console.log('+++ Error in http machine get ' + error);
     res.status(ERROR_CODE.errCode503).end(error);
-    r.quit();
   });
 }).get('/:collection/id/:_id', function (req, res) {
   var f = new _actions.ReadAction(req.params.collection);
@@ -70,7 +64,6 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     console.log('+++ Error in http machine get ' + error);
     res.status(ERROR_CODE.errCode503).end(error);
   });
-  f.quit();
 }).post('/:collection', function (req, res) {
   var p = new _actions.CreateAction(req.params.collection);
   p.create(JSON.stringify(req.body)).then(function (docs) {
@@ -84,7 +77,6 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     console.log('+++ Error in http machine post ' + error);
     res.status(ERROR_CODE.errCode503).end(error);
   });
-  p.quit();
 }).put('/:collection', function (req, res) {
   var u = new Update(req.params.collection);
   u.update(JSON.stringify(req.body)).then(function (docs) {
@@ -98,7 +90,6 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     console.log('+++ Error in http machine get ' + error);
     res.status(ERROR_CODE.errCode503).end(error);
   });
-  u.quit();
 }).delete('/:collection', function (req, res) {
   var d = new Deleted(req.params.collection);
   d.delete(Number(req.body._id)).then(function (docs) {
@@ -112,7 +103,6 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     console.log('+++ Error in http machine get ' + error);
     res.status(ERROR_CODE.errCode503).end(error);
   });
-  d.quit();
 });
 
 exports.default = router;
