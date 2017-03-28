@@ -65,6 +65,34 @@ var Storage = function () {
       this.client = _redis2.default.createClient(this.port, this.host, this.options);
     }
     /**
+     * add many field and data to redis
+     * @param {String} key
+     * @param {Object} hm
+     */
+
+  }, {
+    key: 'hmsetter',
+    value: function hmsetter(key, hm) {
+      var _this = this;
+
+      return new _promise2.default(function (resolve, reject) {
+        if (!key) {
+          reject('key not string');
+        } else {
+          _this.client.hmset(key, hm, function (err, rep) {
+            if (err) {
+              _this.client.quit();
+              console.log(err);
+              reject('reject request get', err);
+            } else {
+              _this.client.quit();
+              resolve(rep);
+            }
+          });
+        }
+      });
+    }
+    /**
     * Get data to push to redis 2
     * @param {String} key
     * @param {String} field
@@ -109,7 +137,7 @@ var Storage = function () {
   }, {
     key: 'setter',
     value: function setter(key, field, value, type) {
-      var _this = this;
+      var _this2 = this;
 
       return new _promise2.default(function (resolve, reject) {
         if (!key) {
@@ -120,32 +148,31 @@ var Storage = function () {
           // }
           switch (type) {
             case Type.N:
-              _this.client.set(key.toString(), value.toString(), function (err, rep) {
+              _this2.client.set(key.toString(), value.toString(), function (err, rep) {
                 if (err) {
-                  _this.client.quit();
+                  _this2.client.quit();
                   console.log(err);
                   reject('reject request get', err);
                 } else {
-                  _this.client.quit();
+                  _this2.client.quit();
                   resolve(rep);
                 }
               });
               break;
             case Type.H:
-              console.log(key.toString(), field.toString(), value.toString());
-              _this.client.hset(key.toString(), field.toString(), value.toString(), function (err, rep) {
+              _this2.client.hset(key.toString(), field.toString(), value.toString(), function (err, rep) {
                 if (err) {
                   console.log(err);
-                  _this.client.quit();
+                  _this2.client.quit();
                   reject('reject request get', err);
                 } else {
-                  _this.client.quit();
+                  _this2.client.quit();
                   resolve(rep);
                 }
               });
               break;
             default:
-              _this.client.quit();
+              _this2.client.quit();
               console.log('++ Type not H or N ++');
               break;
           }
@@ -160,7 +187,7 @@ var Storage = function () {
   }, {
     key: 'len',
     value: function len(key) {
-      var _this2 = this;
+      var _this3 = this;
 
       return new _promise2.default(function (resolve, reject) {
         if (!key) {
@@ -170,12 +197,12 @@ var Storage = function () {
           // if (!this.client.connected) {
           //   this.createClient();
           // }
-          _this2.client.hlen(key.toString(), function (err, rep) {
+          _this3.client.hlen(key.toString(), function (err, rep) {
             if (err) {
-              _this2.client.quit();
+              _this3.client.quit();
               reject('reject request get len', err);
             } else {
-              _this2.client.quit();
+              _this3.client.quit();
               resolve(rep);
             }
           });
@@ -192,7 +219,7 @@ var Storage = function () {
   }, {
     key: 'getter',
     value: function getter(key, field, type) {
-      var _this3 = this;
+      var _this4 = this;
 
       return new _promise2.default(function (resolve, reject) {
         if (!key || key === null) {
@@ -203,29 +230,29 @@ var Storage = function () {
           // }
           switch (type) {
             case Type.N:
-              _this3.client.get(key.toString(), function (err, rep) {
+              _this4.client.get(key.toString(), function (err, rep) {
                 if (err) {
-                  _this3.client.quit();
+                  _this4.client.quit();
                   reject('reject request get', err);
                 } else {
-                  _this3.client.quit();
+                  _this4.client.quit();
                   resolve(rep);
                 }
               });
               break;
             case Type.H:
-              _this3.client.hget(key.toString(), field.toString(), function (err, rep) {
+              _this4.client.hget(key.toString(), field.toString(), function (err, rep) {
                 if (err) {
-                  _this3.client.quit();
+                  _this4.client.quit();
                   reject('reject request get', err);
                 } else {
-                  _this3.client.quit();
+                  _this4.client.quit();
                   resolve(rep);
                 }
               });
               break;
             default:
-              _this3.client.quit();
+              _this4.client.quit();
               console.log('++ Type not H or N ++');
               break;
           }
@@ -240,25 +267,25 @@ var Storage = function () {
   }, {
     key: 'getall',
     value: function getall(key) {
-      var _this4 = this;
+      var _this5 = this;
 
       return new _promise2.default(function (resolve, reject) {
         // if (!this.client.connected) {
         //   this.createClient();
         // }
         if (!key || key === null) {
-          _this4.client.quit();
+          _this5.client.quit();
           reject('key not string');
         } else {
           // if (!this.client.connected) {
           //   this.createClient();
           // }
-          _this4.client.hgetall(key, function (err, rep) {
+          _this5.client.hgetall(key, function (err, rep) {
             if (err) {
-              _this4.client.quit();
+              _this5.client.quit();
               reject('reject request get', err);
             } else {
-              _this4.client.quit();
+              _this5.client.quit();
               resolve(rep);
             }
           });
@@ -275,7 +302,7 @@ var Storage = function () {
   }, {
     key: 'del',
     value: function del(key, field, type) {
-      var _this5 = this;
+      var _this6 = this;
 
       return new _promise2.default(function (resolve, reject) {
         // if (!this.client.connected) {
@@ -289,29 +316,29 @@ var Storage = function () {
           // }
           switch (type) {
             case Type.N:
-              _this5.client.del(key, function (err, rep) {
+              _this6.client.del(key, function (err, rep) {
                 if (err) {
-                  _this5.client.quit();
+                  _this6.client.quit();
                   reject('reject request delete', err);
                 } else {
-                  _this5.client.quit();
+                  _this6.client.quit();
                   resolve(rep);
                 }
               });
               break;
             case Type.H:
-              _this5.client.hdel(key, field, function (err, rep) {
+              _this6.client.hdel(key, field, function (err, rep) {
                 if (err) {
-                  _this5.client.quit();
+                  _this6.client.quit();
                   reject('reject request del', err);
                 } else {
-                  _this5.client.quit();
+                  _this6.client.quit();
                   resolve(rep);
                 }
               });
               break;
             default:
-              _this5.client.quit();
+              _this6.client.quit();
               console.log('++ Type not H or N ++');
               break;
           }
@@ -325,18 +352,18 @@ var Storage = function () {
   }, {
     key: 'clear',
     value: function clear() {
-      var _this6 = this;
+      var _this7 = this;
 
       return new _promise2.default(function (resolve, reject) {
         // if (!this.client.connected) {
         //   this.createClient();
         // }
-        _this6.client.flushall(function (err, success) {
+        _this7.client.flushall(function (err, success) {
           if (err) {
-            _this6.client.quit();
+            _this7.client.quit();
             reject(err);
           } else {
-            _this6.client.quit();
+            _this7.client.quit();
             resolve(success);
           }
         });

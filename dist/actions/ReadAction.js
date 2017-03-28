@@ -87,16 +87,28 @@ var ReadAction = function (_BaseProcess) {
                       resolve(RESPONSE);
                     } else {
                       console.log('---Not Cached---');
-                      _this2.redis.createClient();
+                      // this.redis.createClient();
+                      var hm = [];
                       for (var _ii2 in docs) {
-                        _this2.redis.setter2(_this2.collectionName, docs[_ii2]._id, JSON.stringify(docs[_ii2]), REDIS_TYPE.H);
+                        hm.push(docs[_ii2]._id.toString(), JSON.stringify(docs[_ii2]));
+                        // this.redis.setter2(
+                        //   this.collectionName, docs[ii]._id, JSON.stringify(docs[ii]), REDIS_TYPE.H);
                         RESPONSE[docs[_ii2]._id] = docs[_ii2];
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii2]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii2]._id;
                         }
                       }
-                      _this2.redis.quit();
-                      resolve(RESPONSE);
+
+                      console.log(hm);
+                      _this2.redis.createClient();
+                      _this2.redis.hmsetter(_this2.collectionName, hm).then(function (ar) {
+                        _this2.redis.quit();
+                        resolve(RESPONSE);
+                      }).catch(function (er) {
+                        console.log(er);
+                      });
+
+                      // resolve(RESPONSE);
                     }
                   }
                 });
