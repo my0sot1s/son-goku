@@ -91,7 +91,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode503).end(error);
   });
 }).delete('/:collection', function (req, res) {
-  var d = new Deleted(req.params.collection);
+  var d = new _actions.DeleteAction(req.params.collection);
   d.delete(Number(req.body._id)).then(function (docs) {
     //eslint-disable-line
     if (docs) {

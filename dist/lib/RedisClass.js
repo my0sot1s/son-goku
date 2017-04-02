@@ -79,6 +79,9 @@ var Storage = function () {
         if (!key) {
           reject('key not string');
         } else {
+          if (!_this.client.connected) {
+            _this.createClient();
+          }
           _this.client.hmset(key, hm, function (err, rep) {
             if (err) {
               _this.client.quit();

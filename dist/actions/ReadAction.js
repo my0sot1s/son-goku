@@ -100,9 +100,9 @@ var ReadAction = function (_BaseProcess) {
                       }
 
                       console.log(hm);
-                      _this2.redis.createClient();
+                      // this.redis.createClient();
                       _this2.redis.hmsetter(_this2.collectionName, hm).then(function (ar) {
-                        _this2.redis.quit();
+                        // this.redis.quit();
                         resolve(RESPONSE);
                       }).catch(function (er) {
                         console.log(er);
