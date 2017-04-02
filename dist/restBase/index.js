@@ -39,8 +39,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode403).end();
   }
 }).get('/:collection', function (req, res) {
-  var r = new _actions.ReadAction(req.params.collection);
-  r.read().then(function (docs) {
+  new _actions.ReadAction(req.params.collection).read().then(function (docs) {
     if (docs) {
       console.log('--Count Items:', Object.keys(docs).length);
       res.status(200).json(docs || 200);
@@ -52,8 +51,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode503).end(error);
   });
 }).get('/:collection/id/:_id', function (req, res) {
-  var f = new _actions.ReadAction(req.params.collection);
-  f.getById({ _id: Number(req.params._id) }).then(function (docs) {
+  new _actions.ReadAction(req.params.collection).getById({ _id: Number(req.params._id) }).then(function (docs) {
     //eslint-disable-line
     if (docs) {
       res.status(200).json(docs || 200);
@@ -65,8 +63,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode503).end(error);
   });
 }).post('/:collection', function (req, res) {
-  var p = new _actions.CreateAction(req.params.collection);
-  p.create(JSON.stringify(req.body)).then(function (docs) {
+  new _actions.CreateAction(req.params.collection).create(JSON.stringify(req.body)).then(function (docs) {
     //eslint-disable-line
     if (docs) {
       res.status(200).json(docs || 200);
@@ -78,8 +75,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode503).end(error);
   });
 }).put('/:collection', function (req, res) {
-  var u = new Update(req.params.collection);
-  u.update(JSON.stringify(req.body)).then(function (docs) {
+  new _actions.UpdateAction(req.params.collection).update(JSON.stringify(req.body)).then(function (docs) {
     //eslint-disable-line
     if (docs) {
       res.status(200).json(docs || 200);
@@ -91,8 +87,7 @@ router.all('*', _globals.config.httpMiddleWare.checkall, _globals.config.httpMid
     res.status(ERROR_CODE.errCode503).end(error);
   });
 }).delete('/:collection', function (req, res) {
-  var d = new _actions.DeleteAction(req.params.collection);
-  d.delete(Number(req.body._id)).then(function (docs) {
+  new _actions.DeleteAction(req.params.collection).delete(Number(req.body._id)).then(function (docs) {
     //eslint-disable-line
     if (docs) {
       res.status(200).json(docs || 200);
