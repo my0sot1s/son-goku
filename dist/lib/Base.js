@@ -118,22 +118,31 @@ var BaseProcess = function () {
      */
 
   }, {
-    key: 'quit',
+    key: 'clear',
 
     /**
-     * disconnect Server redis
+     * Clear
      */
+    value: function clear() {
+      return this.redis.clear();
+    }
+    /**
+     * free connect
+     */
+
+  }, {
+    key: 'quit',
     value: function quit() {
       this.redis.quit();
     }
     /**
-     * Clear
+     * Create new Client
      */
 
   }, {
-    key: 'clear',
-    value: function clear() {
-      return this.redis.clear();
+    key: 'createClient',
+    value: function createClient() {
+      this.redis.createClient();
     }
   }, {
     key: 'getCollection',

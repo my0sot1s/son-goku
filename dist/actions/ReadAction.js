@@ -71,6 +71,7 @@ var ReadAction = function (_BaseProcess) {
               _this2.open(_this2.collectionName).then(function (done) {
                 done.find({}).toArray(function (err, docs) {
                   if (err) {
+                    _this2.redis.quit();
                     reject(ERROR_CODE.errProcessRead);
                   } else {
                     if (!_storages2.default[_this2.collectionName].isCached) {
@@ -81,18 +82,33 @@ var ReadAction = function (_BaseProcess) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii]._id;
                           // }
                         }
-                        resolve(RESPONSE);
                       }
+                      _this2.redis.quit();
+                      resolve(RESPONSE);
                     } else {
                       console.log('---Not Cached---');
+                      // this.redis.createClient();
+                      var hm = [];
                       for (var _ii2 in docs) {
-                        _this2.redis.setter(_this2.collectionName, docs[_ii2]._id, JSON.stringify(docs[_ii2]), REDIS_TYPE.H);
+                        hm.push(docs[_ii2]._id.toString(), JSON.stringify(docs[_ii2]));
+                        // this.redis.setter2(
+                        //   this.collectionName, docs[ii]._id, JSON.stringify(docs[ii]), REDIS_TYPE.H);
                         RESPONSE[docs[_ii2]._id] = docs[_ii2];
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii2]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii2]._id;
                         }
                       }
-                      resolve(RESPONSE);
+
+                      console.log(hm);
+                      // this.redis.createClient();
+                      _this2.redis.hmsetter(_this2.collectionName, hm).then(function (ar) {
+                        // this.redis.quit();
+                        resolve(RESPONSE);
+                      }).catch(function (er) {
+                        console.log(er);
+                      });
+
+                      // resolve(RESPONSE);
                     }
                   }
                 });
@@ -124,6 +140,7 @@ var ReadAction = function (_BaseProcess) {
       var _this3 = this;
 
       return new _promise2.default(function (resolve, reject) {
+        _this3.redis.quit();
         console.log(dataFind);
         if (!_this3.collectionName) {
           reject(null);
@@ -157,8 +174,10 @@ var ReadAction = function (_BaseProcess) {
           reject(null);
         } else {
           _this4.redis.clear().then(function (r) {
+            _this4.redis.quit();
             resolve(r);
           }).catch(function (e) {
+            _this4.redis.quit();
             console.log(e);
             reject(null);
           });

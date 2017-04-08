@@ -20,7 +20,7 @@ var listPosts = function () {
     _classCallCheck(this, listPosts);
 
     this._id = Number(json._id);
-    this.titile = json.titile;
+    this.titles = json.titile;
     this.author = json.author;
     this.views = json.views;
     this.shares = json.shares;
@@ -38,7 +38,7 @@ var listPosts = function () {
     get: function get() {
       return {
         _id: this._id,
-        titile: this.titile,
+        titles: this.titles,
         author: this.author,
         views: this.views,
         shares: this.shares,
