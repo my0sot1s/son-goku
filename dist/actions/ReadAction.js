@@ -88,6 +88,7 @@ var ReadAction = function (_BaseProcess) {
                       _this2.redis.quit();
                       // resolve(RESPONSE);
                       resolve(res);
+                      // resolve(RESPONSE);
                     } else {
                       console.log('---Not Cached---');
                       // this.redis.createClient();
@@ -99,16 +100,17 @@ var ReadAction = function (_BaseProcess) {
                         //   this.collectionName, docs[ii]._id, JSON.stringify(docs[ii]), REDIS_TYPE.H);
                         // RESPONSE[docs[ii]._id] = docs[ii];
                         res.push(docs[_ii2]);
+                        // RESPONSE[docs[_ii2]._id] = docs[_ii2];
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii2]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii2]._id;
                         }
                       }
-                      console.log(hm);
                       // this.redis.createClient();
                       _this2.redis.hmsetter(_this2.collectionName, hm).then(function (ar) {
                         // this.redis.quit();
                         // resolve(RESPONSE);
                         resolve(res);
+                        // resolve(RESPONSE);
                       }).catch(function (er) {
                         console.log(er);
                       });
