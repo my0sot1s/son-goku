@@ -65,7 +65,7 @@ var ReadAction = function (_BaseProcess) {
           console.log(ERROR_CODE.errProcessRead);
           reject(null);
         } else {
-          var RESPONSE = {};
+          // const RESPONSE = {};
           _this2.redis.getall(_this2.collectionName).then(function (first) {
             if (!first) {
               _this2.open(_this2.collectionName).then(function (done) {
@@ -75,8 +75,10 @@ var ReadAction = function (_BaseProcess) {
                     reject(ERROR_CODE.errProcessRead);
                   } else {
                     if (!_storages2.default[_this2.collectionName].isCached) {
+                      var res = [];
                       for (var _ii in docs) {
-                        RESPONSE[docs[_ii]._id] = docs[_ii];
+                        // RESPONSE[docs[ii]._id] = docs[ii];
+                        res.push(docs[_ii]);
                         // if (storages[this.collectionName].maxKey === 0) {
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii]._id;
@@ -84,26 +86,29 @@ var ReadAction = function (_BaseProcess) {
                         }
                       }
                       _this2.redis.quit();
-                      resolve(RESPONSE);
+                      // resolve(RESPONSE);
+                      resolve(res);
                     } else {
                       console.log('---Not Cached---');
                       // this.redis.createClient();
                       var hm = [];
+                      var res = [];
                       for (var _ii2 in docs) {
                         hm.push(docs[_ii2]._id.toString(), JSON.stringify(docs[_ii2]));
                         // this.redis.setter2(
                         //   this.collectionName, docs[ii]._id, JSON.stringify(docs[ii]), REDIS_TYPE.H);
-                        RESPONSE[docs[_ii2]._id] = docs[_ii2];
+                        // RESPONSE[docs[ii]._id] = docs[ii];
+                        res.push(docs[_ii2]);
                         if (_storages2.default[_this2.collectionName].maxKey < docs[_ii2]._id) {
                           _storages2.default[_this2.collectionName].maxKey = docs[_ii2]._id;
                         }
                       }
-
                       console.log(hm);
                       // this.redis.createClient();
                       _this2.redis.hmsetter(_this2.collectionName, hm).then(function (ar) {
                         // this.redis.quit();
-                        resolve(RESPONSE);
+                        // resolve(RESPONSE);
+                        resolve(res);
                       }).catch(function (er) {
                         console.log(er);
                       });
@@ -114,14 +119,16 @@ var ReadAction = function (_BaseProcess) {
                 });
               });
             } else {
+              var res = [];
               for (var ii in first) {
                 first[ii] = JSON.parse(first[ii]);
                 if (_storages2.default[_this2.collectionName].maxKey < first[ii]._id) {
                   _storages2.default[_this2.collectionName].maxKey = first[ii]._id;
                 }
+                res.push(first[ii]);
               }
               console.log('---Cached---');
-              resolve(first);
+              resolve(res);
             }
           }).catch(function (err) {
             console.log(err);
